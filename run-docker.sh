@@ -18,5 +18,5 @@ if ! [[ -f settings/git/config ]]; then
     cp ~/.gitconfig settings/git/config
 fi
 
-docker run --rm -it -v $PWD/settings:/home/atlas/settings danalysis:85
+docker run --rm -it -v $PWD/settings:/home/atlas/settings danalysis
 
