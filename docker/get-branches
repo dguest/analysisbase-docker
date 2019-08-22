@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+
+"""
+Dump the contents of an AOD, or at least the auxdata
+"""
+
+import uproot
+from sys import argv, stdout
+import json
+from collections import defaultdict
+import argparse
+
+def run():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('input_file')
+    args = parser.parse_args()
+    rfile = uproot.open(args.input_file)
+    keys = [s.decode().split('.') for s in rfile['CollectionTree'].keys()]
+    coldict = defaultdict(list)
+    for k in keys:
+        if len(k) == 1:
+            continue
+        coldict[k[0]].append(k[1])
+    stdout.write(json.dumps(coldict, indent=2))
+
+if __name__ == '__main__':
+    run()

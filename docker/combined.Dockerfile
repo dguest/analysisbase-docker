@@ -23,6 +23,7 @@ COPY _h5ls/_h5ls.sh /etc/dguest/
 COPY git-fatlas/git-fatlas.sh /etc/dguest
 COPY pandamonium/pandamon /usr/local/bin/
 COPY mark-and-jump/mark-and-jump.sh /etc/dguest
+COPY get-branches /usr/local/bin
 
 USER atlas
 WORKDIR /workdir
