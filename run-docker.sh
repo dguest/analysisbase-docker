@@ -6,7 +6,7 @@ get-ssh() {
     local TARG=${2-$1}
     mkdir -p settings/ssh
     if ! [[ -f settings/ssh/$TARG ]]; then
-        echo "getting $TARG"
+        echo "getting $TARG from ~/.ssh"
         cp ~/.ssh/$1 settings/ssh/$TARG
     fi
 }
@@ -16,7 +16,7 @@ get-ssh known_hosts
 
 # load in the ssh config files
 if ! [[ -f settings/ssh/config ]]; then
-    cp ssh-default/config settings/ssh
+    cp $(dirname ${BASH_SOURCE[0]})/ssh-default/config settings/ssh
 fi
 
 # load the user's git configuration
