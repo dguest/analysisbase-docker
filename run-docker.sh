@@ -8,15 +8,21 @@ get-ssh() {
         cp ~/.ssh/$1 settings/ssh/$TARG
     fi
 }
-get-ssh config
-get-ssh id_rsa
-get-ssh id_rsa.pub
+get-ssh id_rsa gitlab
+get-ssh id_rsa.pub gitlab
 get-ssh known_hosts
+
+if ! [[ -f settings/ssh/config ]]; then
+    cp ssh-default/config settings/ssh
+fi
 
 mkdir -p settings/git
 if ! [[ -f settings/git/config ]]; then
     cp ~/.gitconfig settings/git/config
 fi
 
-docker run --rm -it -v $PWD/settings:/home/atlas/settings danalysis
+docker run --rm -it \
+       -v $PWD/settings:/home/atlas/settings \
+       -v $PWD/work:/workdir \
+       danalysis
 

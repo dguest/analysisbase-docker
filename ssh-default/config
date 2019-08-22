@@ -1,0 +1,3 @@
+Host gitlab.cern.ch
+ User git
+ IdentityFile ~/.ssh/gitlab
