@@ -27,4 +27,4 @@ COPY mark-and-jump/mark-and-jump.sh /etc/dguest
 USER atlas
 WORKDIR /workdir
 
-CMD /bin/bash --rcfile /home/atlas/.bashrc
+CMD /bin/bash
