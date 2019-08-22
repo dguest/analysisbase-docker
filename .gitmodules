@@ -1,0 +1,12 @@
+[submodule "docker/_h5ls"]
+	path = docker/_h5ls
+	url = git@github.com:dguest/_h5ls.git
+[submodule "docker/git-fatlas"]
+	path = docker/git-fatlas
+	url = git@github.com:dguest/git-fatlas.git
+[submodule "docker/pandamonium"]
+	path = docker/pandamonium
+	url = git@github.com:dguest/pandamonium.git
+[submodule "docker/mark-and-jump"]
+	path = docker/mark-and-jump
+	url = git@github.com:dguest/mark-and-jump.git

@@ -38,5 +38,6 @@ fi
 docker run --rm -it \
        -v $PWD/settings:/home/atlas/settings \
        -v $PWD/work:/workdir \
+       -e USER=$USER \
        danalysis
 

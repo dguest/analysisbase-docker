@@ -17,9 +17,12 @@ RUN \
   pip install -r requirements.txt
 
 COPY custom-rc.bash /home/atlas/.bashrc
+COPY custom_logout.bash /home/atlas/.bash_logout
 
-ADD https://raw.githubusercontent.com/dguest/_h5ls/master/_h5ls.sh /etc/
-RUN chmod a+r /etc/_h5ls.sh
+COPY _h5ls/_h5ls.sh /etc/dguest/
+COPY git-fatlas/git-fatlas.sh /etc/dguest
+COPY pandamonium/pandamon /usr/local/bin/
+COPY mark-and-jump/mark-and-jump.sh /etc/dguest
 
 USER atlas
 WORKDIR /workdir
