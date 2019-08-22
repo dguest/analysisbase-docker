@@ -14,5 +14,7 @@ source /home/atlas/release_setup.sh > /dev/null
 cp /home/atlas/settings/git/config ~/.gitconfig
 cp -r /home/atlas/settings/ssh ~/.ssh
 
+HISTFILE=/workdir/.bash_history
+
 # aliases
 alias ls='ls --color=auto'
