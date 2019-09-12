@@ -1,13 +1,23 @@
 #!/usr/bin/env bash
 
+set -eu
+
 # we only get the ssh keys from your area if you haven't created them
 # and put them in `settings/ssh`
 get-ssh() {
-    local TARG=${2-$1}
+    local TARG=settings/ssh/${2-$1}
     mkdir -p settings/ssh
-    if ! [[ -f settings/ssh/$TARG ]]; then
+    if ! [[ -f $TARG ]]; then
+        local SRC=~/.ssh/$TARG
+        if [[ ! -f $SRC ]]; then
+            SRC=~/.ssh/$1
+        fi
+        if [[ ! -f $SRC ]]; then
+            echo "ERROR: no file $SRC found" >&2
+            return 1
+        fi
         echo "getting $TARG from ~/.ssh"
-        cp ~/.ssh/$1 settings/ssh/$TARG
+        cp $SRC $TARG
     fi
 }
 get-ssh id_rsa gitlab

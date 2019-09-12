@@ -20,8 +20,9 @@ from within the source directory.
 SSH Keys
 --------
 
-By default the run script will pull your keys from `~/.ssh/id_rsa`. If
-you want to generate a new key to use just for this container:
+By default the run script will pull your keys from `~/.ssh/gitlab` or
+(if no such key exists) `~/.ssh/id_rsa`. If you want to generate a new
+key to use just for this container:
 
  - Open the [gitlab key entry forum](https://gitlab.cern.ch/profile/keys)
  - run `make-key.sh | pbcopy` and paste into the box there
