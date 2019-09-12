@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 Dump the contents of an AOD, or at least the auxdata
@@ -9,18 +9,31 @@ from sys import argv, stdout
 import json
 from collections import defaultdict
 import argparse
+import re
 
 def run():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('input_file')
     args = parser.parse_args()
     rfile = uproot.open(args.input_file)
-    keys = [s.decode().split('.') for s in rfile['CollectionTree'].keys()]
+    tree = rfile['CollectionTree']
+    keys = [s.decode() for s in tree.keys()]
     coldict = defaultdict(list)
     for k in keys:
-        if len(k) == 1:
-            continue
-        coldict[k[0]].append(k[1])
+        interp = tree[k].interpretation
+        if interp is None:
+            interp_str = 'unknown'
+        else:
+            try:
+                interp_str = str(interp).split("'")[1]
+            except (AttributeError, IndexError) as err:
+                interp_str = str(interp)
+
+        if '.' in k:
+            group, leaf = k.split('.')
+            coldict[group].append([leaf or 'Container',interp_str])
+        else:
+            coldict[k].append([interp_str, 'Object'])
     stdout.write(json.dumps(coldict, indent=2))
 
 if __name__ == '__main__':
