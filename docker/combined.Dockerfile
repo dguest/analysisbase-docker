@@ -5,6 +5,12 @@ USER root
 RUN \
   yum update -y && \
   yum install -y jq tree bash-completion && \
+  pushd /tmp/ && \
+  wget https://centos7.iuscommunity.org/ius-release.rpm && \
+  rpm -i --nodeps ius-release.rpm && \
+  popd && \
+  yum remove -y git && \
+  yum install -y git2u && \
   yum clean all && \
   true
 
