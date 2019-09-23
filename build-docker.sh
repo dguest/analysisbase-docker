@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-TAG=85
+TAG=89
 NAME=danalysis
 
 docker build docker --build-arg TAG=$TAG -f docker/combined.Dockerfile \
